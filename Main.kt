@@ -1,27 +1,23 @@
 package tasklist
 
 fun main() {
-    val taskContainer = HashMap<Int, String>()
-    var taskNumber = 1
+    val tasks = mutableListOf<String>()
     println("Input the tasks (enter a blank line to end):")
     while (true) {
         val task = readln().trim()
-        if (taskNumber == 1 && task == "") {
+        if (tasks.isEmpty() && task.isEmpty()) {
             println("No tasks have been input")
-        }
-        if (task == "") {
             break
         }
-        taskContainer[taskNumber] = task
-        taskNumber++
+        if (task.isEmpty()) break
+        tasks.add(task)
     }
-    printTasks(taskContainer)
+    printTasks(tasks)
 }
 
-fun printTasks(tasks: HashMap<Int, String>) {
-    for ((key, value) in tasks) {
-        println(key.toString().padEnd(3, ' ') + value)
+fun printTasks(tasks: List<String>) {
+    tasks.forEachIndexed { index, task ->
+        println("${index + 1}".padEnd(3, ' ') + task)
     }
 }
-
 
